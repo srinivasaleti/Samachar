@@ -24,7 +24,7 @@ describe("PostList", () => {
           { data: { title: "B", id: "B" } }
         ]
       };
-      const wrapper = mount(<PostList posts={posts} />);
+      const wrapper = shallow(<PostList posts={posts} />);
       const posts_ = wrapper.find("Post");
       expect(posts_.at(0).props()).toEqual({
         post: posts.children[0].data
