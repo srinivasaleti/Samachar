@@ -1,0 +1,49 @@
+.post-container {
+  padding: 50px;
+  padding-bottom: 0px;
+  background: rgb(249, 249, 249);
+  box-shadow: 1px 1px 1px 1px rgb(245, 245, 245);
+  border-radius: 2px;
+  max-width: 1000px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
+    Arial, sans-serif !important;
+}
+
+.post-container .title {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: -0.17px !important;
+  text-decoration: none;
+}
+
+.post-container .title a {
+  color: rgba(0, 0, 0, 0.84) !important;
+  text-decoration: none;
+}
+
+.post-container .author,
+.posted_time {
+  color: rgba(87, 84, 84, 0.84) !important;
+}
+
+.post-container .details {
+  margin-bottom: 20px;
+}
+
+.post-container .title:hover {
+  text-decoration: underline;
+}
+
+.post-container .votes {
+  color: rgba(48, 46, 46, 0.84) !important;
+  display: flex;
+}
+.post-container .votes p {
+  margin-right: 20px;
+}
+
+.fa-hand-o-right:before {
+  content: "\f0a4";
+}
