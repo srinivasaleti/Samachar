@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import Post from "../Post/Post";
 
 export default class PostList extends Component {
   renderPosts() {
     return (
-      <ul>
+      <div>
         {this.props.posts.children.map(post => (
-          <li key={post.data.id}>{post.data.title}</li>
+          <Post key={post.data.id} post={post.data} />
         ))}
-      </ul>
+      </div>
     );
   }
 

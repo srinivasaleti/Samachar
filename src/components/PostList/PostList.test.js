@@ -1,6 +1,6 @@
 import React from "react";
 import PostList from "./PostList";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import "../../enzyme-setup";
 
 describe("PostList", () => {
@@ -15,7 +15,7 @@ describe("PostList", () => {
     it("render empty div when childrens not available", () => {
       const posts = { children: [] };
       const wrapper = shallow(<PostList posts={posts} />);
-      expect(wrapper.html()).toBe("<ul></ul>");
+      expect(wrapper.html()).toBe("<div></div>");
     });
     it("renders post when childrens available", () => {
       const posts = {
@@ -24,8 +24,14 @@ describe("PostList", () => {
           { data: { title: "B", id: "B" } }
         ]
       };
-      const wrapper = shallow(<PostList posts={posts} />);
-      expect(wrapper.html()).toBe("<ul><li>A</li><li>B</li></ul>");
+      const wrapper = mount(<PostList posts={posts} />);
+      const posts_ = wrapper.find("Post");
+      expect(posts_.at(0).props()).toEqual({
+        post: posts.children[0].data
+      });
+      expect(posts_.at(1).props()).toEqual({
+        post: posts.children[1].data
+      });
     });
   });
 });
