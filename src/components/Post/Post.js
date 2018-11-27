@@ -13,7 +13,10 @@ export default class Post extends Component {
             <a href={post.url}>{post.title}</a>
           </h1>
           <span className="author">Posted by: {post.author}</span>
-          <span className="posted_time">at&nbsp;{d.toLocaleString()}</span>
+
+          <span className="posted_time">
+            &nbsp;at&nbsp;{d.toLocaleString()}
+          </span>
         </div>
 
         <div className="votes">
