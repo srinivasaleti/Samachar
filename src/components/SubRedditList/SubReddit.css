@@ -1,20 +1,26 @@
 .subreddit-container {
-  width: 300px;
-  margin: 20px;
+  top: 5px;
+  height: 100px;
+  background: white;
+  box-shadow: 4px 4px rgb(232, 232, 232);
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  width: 100%;
 }
 
 .subreddit-container option {
   height: 30px;
-  padding-top: 10px;
+  padding-top: 35px;
   margin-bottom: 10px;
-  width: 300px;
   text-align: center;
   font-size: 18px;
   letter-spacing: -0.17px !important;
   text-decoration: none;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
     Arial, sans-serif !important;
-  background: rgb(249, 249, 249);
 }
 
 .subreddit-container option:hover {

@@ -38,8 +38,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <PostList posts={this.state.posts} />
         <SubRedditList onSelectSubReddit={this.onSelectSubReddit} />
+        <PostList posts={this.state.posts} />
       </div>
     );
   }

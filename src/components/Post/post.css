@@ -1,14 +1,10 @@
 .post-container {
-  padding: 50px;
-  padding-bottom: 0px;
+  padding: 20px;
+  border-radius: 2px;
+  margin: 5px;
+  margin-top: 10px;
   background: rgb(249, 249, 249);
   box-shadow: 1px 1px 1px 1px rgb(245, 245, 245);
-  border-radius: 2px;
-  max-width: 1000px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
-    Arial, sans-serif !important;
 }
 
 .post-container .title {

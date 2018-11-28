@@ -15,7 +15,7 @@ describe("PostList", () => {
     it("render empty div when childrens not available", () => {
       const posts = { children: [] };
       const wrapper = shallow(<PostList posts={posts} />);
-      expect(wrapper.html()).toBe("<div></div>");
+      expect(wrapper.html()).toBe('<div class="post-list-container"></div>');
     });
     it("renders post when childrens available", () => {
       const posts = {
