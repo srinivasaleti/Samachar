@@ -1,0 +1,23 @@
+.subreddit-container {
+  width: 300px;
+  margin: 20px;
+}
+
+.subreddit-container option {
+  height: 30px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: -0.17px !important;
+  text-decoration: none;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva,
+    Arial, sans-serif !important;
+  background: rgb(249, 249, 249);
+}
+
+.subreddit-container option:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

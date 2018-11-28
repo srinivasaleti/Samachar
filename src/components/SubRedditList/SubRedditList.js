@@ -1,13 +1,28 @@
 import React, { Component } from "react";
+import "./SubReddit.css";
 
 export default class SubRedditList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subReddits: ["News", "Sports", "Movies"]
+    };
+  }
   render() {
     return (
-      <select onChange={this.props.onSelectSubReddit}>
-        <option value="news">News</option>
-        <option value="sports">Sports</option>
-        <option value="movies">Movies</option>
-      </select>
+      <div className="subreddit-container">
+        {this.state.subReddits.map((reddit, index) => {
+          return (
+            <option
+              key={index}
+              onClick={this.props.onSelectSubReddit}
+              value={reddit}
+            >
+              {reddit}
+            </option>
+          );
+        })}
+      </div>
     );
   }
 }
