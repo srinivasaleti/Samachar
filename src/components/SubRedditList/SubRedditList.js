@@ -5,7 +5,7 @@ export default class SubRedditList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subReddits: ["News", "Sports", "Movies"]
+      subReddits: ["News", "Sports", "Movies", "Technology", "Business"]
     };
   }
   render() {
