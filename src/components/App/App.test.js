@@ -4,8 +4,24 @@ import { shallow, mount } from "enzyme";
 import "../../enzyme-setup";
 
 describe("App", () => {
-  const news = { data: ["a1", "b1", "c1"] };
-  const sports = { data: ["a2", "b2", "c2"] };
+  const news = {
+    data: {
+      children: [
+        { data: { id: "a", title: "a1" } },
+        { data: { id: "b", title: "b1" } },
+        { data: { id: "c", title: "c1" } }
+      ]
+    }
+  };
+  const sports = {
+    data: {
+      children: [
+        { data: { title: "a2" } },
+        { data: { title: "b2" } },
+        { data: { title: "c2" } }
+      ]
+    }
+  };
 
   function fetchPosts(posts) {
     fetch = jest.fn(() => {
@@ -62,5 +78,61 @@ describe("App", () => {
     wrapper.instance().updatePosts = mock;
     subReddit.simulate("change", event);
     expect(mock).toBeCalledWith("sports");
+  });
+
+  it("clear the previous filtered posts on subreddit", () => {
+    fetchPosts(sports);
+    const wrapper = mount(<App />);
+    const mock = jest.fn();
+    const subReddit = wrapper.find("select");
+    const event = { target: { value: "sports" } };
+    wrapper.instance().updatePosts = mock;
+    subReddit.simulate("change", event);
+    expect(wrapper.state().filteredPosts.children.length).toBe(0);
+    expect(wrapper.state().clearSearchValue).toBe(true);
+  });
+
+  describe("search", () => {
+    it("get filtered posts bases on value", async () => {
+      fetchPosts(news);
+      const wrapper = await mount(<App />);
+      await wrapper.instance().updatePosts("news");
+      wrapper.find("input").simulate("change", { target: { value: "c" } });
+      expect(wrapper.state("filteredPosts")).toEqual({
+        children: [{ data: { id: "c", title: "c1" } }]
+      });
+    });
+
+    it("get should get empty when value is invaid", async () => {
+      fetchPosts(news);
+      const wrapper = await mount(<App />);
+      await wrapper.instance().updatePosts("news");
+      wrapper.find("input").simulate("change", { target: { value: "blah" } });
+      expect(wrapper.state("filteredPosts")).toEqual({
+        children: []
+      });
+    });
+
+    it("get should get empty when value is invaid", async () => {
+      fetchPosts(news);
+      const wrapper = await mount(<App />);
+      await wrapper.instance().updatePosts("news");
+      wrapper.find("input").simulate("change", { target: { value: "" } });
+      expect(wrapper.state("filteredPosts")).toEqual(news.data);
+    });
+
+    it.only("should render all posts when filtered list is empty", async () => {
+      fetchPosts(news);
+      const wrapper = await mount(<App />);
+      await wrapper.instance().updatePosts("news");
+      wrapper.find("input").simulate("change", { target: { value: "blah" } });
+      // console.log(wrapper.find("PostList").state(), "FDd");
+      expect(
+        wrapper
+          .find("PostList")
+          .at(0)
+          .props().posts
+      ).toEqual(news.data);
+    });
   });
 });
