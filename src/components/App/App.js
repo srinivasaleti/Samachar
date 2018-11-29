@@ -77,8 +77,10 @@ class App extends Component {
           clearSearchValue={this.state.clearSearchValue}
           onSearch={this.filterPostList}
         />
+        {!this.state.hide && (
+          <SubRedditList onSelectSubReddit={this.onSelectSubReddit} />
+        )}
         {this.getPostListElement()}
-        <SubRedditList onSelectSubReddit={this.onSelectSubReddit} />
       </div>
     );
   }

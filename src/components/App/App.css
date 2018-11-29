@@ -1,3 +1,8 @@
 .app {
-  display: flex;
+  background: rgb(239, 239, 239);
+  padding-top: 20px;
+  width: 100%;
+  margin: auto;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+    Geneva Arial, sans-serif !important;
 }
