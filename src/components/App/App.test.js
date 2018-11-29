@@ -57,6 +57,8 @@ describe("App", () => {
     fetchPosts(sports);
     const wrapper = mount(<App />);
     const mock = jest.fn();
+    const showReddit = wrapper.find(".show-reddit");
+    showReddit.simulate("click");
     const subReddit = wrapper.find("option").at(0);
     const event = { target: { value: "sports" } };
     wrapper.instance().updatePosts = mock;

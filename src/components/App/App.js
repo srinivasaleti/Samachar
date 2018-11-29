@@ -38,7 +38,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SubRedditList onSelectSubReddit={this.onSelectSubReddit} />
+        {!this.state.hide && (
+          <SubRedditList onSelectSubReddit={this.onSelectSubReddit} />
+        )}
         <PostList posts={this.state.posts} />
       </div>
     );
