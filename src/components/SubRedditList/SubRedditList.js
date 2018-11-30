@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import "./SubReddit.css";
-import {
-  selectedSubReddit,
-  subRedditSelected
-} from "../../redux/main/actions/actions";
+import { selectedSubReddit } from "../../redux/main/actions/actions";
 import { connect } from "react-redux";
 import { updateStoreWithPostsOf } from "../../redux/main/actions/actions";
 
@@ -72,7 +69,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(updateStoreWithPostsOf(subReddit));
     },
     subRedditSelected: () => {
-      dispatch(subRedditSelected());
+      dispatch(selectedSubReddit());
     }
   };
 };

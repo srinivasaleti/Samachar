@@ -29,12 +29,6 @@ export const fetchReddit = (state = {}, action) => {
         showSubRedditPane: !state.showSubRedditPane,
         subRedditPaneOpenAtleastOnce: true
       };
-    case SUB_REDDIT_SELECTED:
-      return {
-        ...state,
-        showSubRedditPane: !state.showSubRedditPane,
-        subRedditPaneOpenAtleastOnce: true
-      };
     default:
       return state;
   }

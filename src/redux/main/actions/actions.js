@@ -28,12 +28,6 @@ export const showSubRedditPaneButtonClicked = () => {
   };
 };
 
-export const subRedditSelected = () => {
-  return {
-    type: SUB_REDDIT_SELECTED
-  };
-};
-
 const updateStoreWithPosts = async (dispatch, subReddit) => {
   const response = await fetch(
     "https://www.reddit.com/r/" + subReddit + ".json?limit=100"
