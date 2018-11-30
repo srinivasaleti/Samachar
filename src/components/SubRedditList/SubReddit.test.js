@@ -1,14 +1,14 @@
 import React from "react";
-import SubRedditList from "./SubRedditList";
+import { SubRedditList } from "./SubRedditList";
 import { mount } from "enzyme";
 import "../../enzyme-setup";
 
 describe("SubRedditList", () => {
-  const onSelectSubReddit = jest.fn();
-
-  const wrapper = mount(
-    <SubRedditList onSelectSubReddit={onSelectSubReddit} />
-  );
+  const props = {
+    setSelectedSubReddit: jest.fn(),
+    fetchPosts: jest.fn()
+  };
+  const wrapper = mount(<SubRedditList {...props} />);
 
   it("don't show subreddit container initially", () => {
     expect(wrapper.find(".subreddit-container").exists()).toBe(false);
@@ -22,9 +22,7 @@ describe("SubRedditList", () => {
   });
 
   it("add slide-in class to subreddit-container when open", () => {
-    const wrapper = mount(
-      <SubRedditList onSelectSubReddit={onSelectSubReddit} />
-    );
+    const wrapper = mount(<SubRedditList {...props} />);
     const showReddit = wrapper.find(".show-reddit");
     showReddit.simulate("click");
     wrapper.update();
@@ -41,11 +39,8 @@ describe("SubRedditList", () => {
         .exists()
     ).toBe(false);
   });
-
   it("add slide-out class to subreddit-container when open", () => {
-    const wrapper = mount(
-      <SubRedditList onSelectSubReddit={onSelectSubReddit} />
-    );
+    const wrapper = mount(<SubRedditList {...props} />);
     const showReddit = wrapper.find(".show-reddit");
     showReddit.simulate("click");
     wrapper.update();
@@ -64,12 +59,13 @@ describe("SubRedditList", () => {
         .exists()
     ).toBe(false);
   });
-
-  it("on subreddit change should parent to update subReddit", () => {
+  it("on select a subReddit should update to store", () => {
+    const wrapper = mount(<SubRedditList {...props} />);
     const showReddit = wrapper.find(".show-reddit");
     showReddit.simulate("click");
     const subReddit = wrapper.find("option").at(0);
     subReddit.simulate("click");
-    expect(onSelectSubReddit).toBeCalled();
+    expect(props.fetchPosts).toBeCalled();
+    expect(props.setSelectedSubReddit).toBeCalledWith("News");
   });
 });

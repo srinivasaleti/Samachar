@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import "./SubReddit.css";
+import { selectedSubReddit } from "../../redux/main/actions/actions";
+import { connect } from "react-redux";
+import { updateStoreWithPostsOf } from "../../redux/main/actions/actions";
 
-export default class SubRedditList extends Component {
+export class SubRedditList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +25,9 @@ export default class SubRedditList extends Component {
     this.setState({
       hide: true
     });
-    this.props.onSelectSubReddit(event);
+    const reddit = event.target.value;
+    this.props.setSelectedSubReddit(reddit);
+    this.props.fetchPosts(reddit);
     event.preventDefault();
   };
 
@@ -30,7 +35,9 @@ export default class SubRedditList extends Component {
     return this.state.subReddits.map((reddit, index) => (
       <option
         key={index}
-        onClick={this.subRedditSelectionHandler}
+        onClick={e => {
+          this.subRedditSelectionHandler(e);
+        }}
         value={reddit}
       >
         {reddit}
@@ -57,3 +64,23 @@ export default class SubRedditList extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {};
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedSubReddit: subReddit => {
+      dispatch(selectedSubReddit(subReddit));
+    },
+    fetchPosts: subReddit => {
+      dispatch(updateStoreWithPostsOf(subReddit));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SubRedditList);
