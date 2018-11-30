@@ -11,7 +11,9 @@ describe("Reducers", () => {
         subReddit: "subReddit"
       };
       expect(fetchReddit({}, action)).toEqual({
-        selectedSubReddit: "subReddit"
+        selectedSubReddit: "subReddit",
+        showSubRedditPane: false,
+        subRedditsFetching: true
       });
     });
 
@@ -20,7 +22,10 @@ describe("Reducers", () => {
         type: RECIEVED_POSTS,
         posts: ["posts"]
       };
-      expect(fetchReddit({}, action)).toEqual({ posts: ["posts"] });
+      expect(fetchReddit({}, action)).toEqual({
+        posts: ["posts"],
+        subRedditsFetching: false
+      });
     });
   });
 });

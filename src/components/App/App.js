@@ -8,6 +8,7 @@ import {
 } from "../../redux/main/actions/actions";
 import { connect } from "react-redux";
 import Header from "../Header/Header";
+import Loader from "../Loader/Loader";
 export class App extends Component {
   componentDidMount() {
     this.props.setSubReddit("news");
@@ -22,6 +23,7 @@ export class App extends Component {
     return (
       <div className="app">
         <Header />
+        <Loader />
         <SubRedditList />
         {this.getPostListElement()}
       </div>

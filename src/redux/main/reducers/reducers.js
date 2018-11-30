@@ -12,12 +12,15 @@ export const fetchReddit = (state = {}, action) => {
       const subReddit = action.subReddit;
       return {
         ...state,
+        subRedditsFetching: true,
+        showSubRedditPane: false,
         selectedSubReddit: subReddit
       };
     case RECIEVED_POSTS:
       const posts = action.posts;
       return {
         ...state,
+        subRedditsFetching: false,
         posts
       };
     case SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED:

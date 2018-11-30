@@ -1,0 +1,27 @@
+.loader-modal {
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  position: fixed;
+  background: rgba(206, 206, 206, 0.5);
+  z-index: 1;
+}
+
+.loader {
+  width: 200px;
+  margin: auto;
+}
+.spinner {
+  margin-top: 35vh;
+  opacity: 1;
+  font-size: 200px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
