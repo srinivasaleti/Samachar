@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./SubReddit.css";
-import { selectedSubReddit } from "../../redux/main/actions/actions";
+import {
+  selectedSubReddit,
+  subRedditSelected
+} from "../../redux/main/actions/actions";
 import { connect } from "react-redux";
 import { updateStoreWithPostsOf } from "../../redux/main/actions/actions";
 
@@ -8,26 +11,15 @@ export class SubRedditList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subReddits: ["News", "Sports", "Movies", "Technology", "Business"],
-      hide: true,
-      firstTimeOpen: true
+      subReddits: ["News", "Sports", "Movies", "Technology", "Business"]
     };
   }
 
-  changeState = () => {
-    this.setState(prevState => ({
-      hide: !prevState.hide,
-      firstTimeOpen: false
-    }));
-  };
-
   subRedditSelectionHandler = event => {
-    this.setState({
-      hide: true
-    });
     const reddit = event.target.value;
     this.props.setSelectedSubReddit(reddit);
     this.props.fetchPosts(reddit);
+    this.props.subRedditSelected();
     event.preventDefault();
   };
 
@@ -45,28 +37,30 @@ export class SubRedditList extends Component {
     ));
   }
 
-  render() {
+  subReddistListConainer() {
     const classNameFopSubRedditConatiner =
-      "subreddit-container " + (this.state.hide ? "slide-out" : "slide-in");
+      "subreddit-container " + (this.props.show ? "slide-in" : "slide-out");
     return (
       <div className="sub-reddits-section">
-        <div onClick={this.changeState} className="show-reddit">
-          <div />
-          <div />
-          <div />
+        <div className={classNameFopSubRedditConatiner}>
+          {this.mapAllSubRedditsToHtmlOptions()}
         </div>
-        {!this.state.firstTimeOpen && (
-          <div className={classNameFopSubRedditConatiner}>
-            {this.mapAllSubRedditsToHtmlOptions()}
-          </div>
-        )}
       </div>
     );
+  }
+
+  render() {
+    return this.props.displayedAtleastOnce
+      ? this.subReddistListConainer()
+      : null;
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    show: state.subReddit.showSubRedditPane,
+    displayedAtleastOnce: state.subReddit.subRedditPaneOpenAtleastOnce
+  };
 }
 
 const mapDispatchToProps = dispatch => {
@@ -76,6 +70,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchPosts: subReddit => {
       dispatch(updateStoreWithPostsOf(subReddit));
+    },
+    subRedditSelected: () => {
+      dispatch(subRedditSelected());
     }
   };
 };

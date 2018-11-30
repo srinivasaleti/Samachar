@@ -7,12 +7,8 @@ import {
   updateStoreWithPostsOf
 } from "../../redux/main/actions/actions";
 import { connect } from "react-redux";
-
+import Header from "../Header/Header";
 export class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.setSubReddit("news");
     this.props.fetchPosts("news");
@@ -25,6 +21,7 @@ export class App extends Component {
   render() {
     return (
       <div className="app">
+        <Header />
         <SubRedditList />
         {this.getPostListElement()}
       </div>

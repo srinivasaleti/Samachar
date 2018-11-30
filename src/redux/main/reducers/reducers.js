@@ -1,5 +1,10 @@
 import { combineReducers } from "redux";
-import { SELECTED_SUB_REDDIT, RECIEVED_POSTS } from "../actions/actions";
+import {
+  SELECTED_SUB_REDDIT,
+  RECIEVED_POSTS,
+  SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED,
+  SUB_REDDIT_SELECTED
+} from "../actions/actions";
 
 export const fetchReddit = (state = {}, action) => {
   switch (action.type) {
@@ -14,6 +19,18 @@ export const fetchReddit = (state = {}, action) => {
       return {
         ...state,
         posts
+      };
+    case SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED:
+      return {
+        ...state,
+        showSubRedditPane: !state.showSubRedditPane,
+        subRedditPaneOpenAtleastOnce: true
+      };
+    case SUB_REDDIT_SELECTED:
+      return {
+        ...state,
+        showSubRedditPane: !state.showSubRedditPane,
+        subRedditPaneOpenAtleastOnce: true
       };
     default:
       return state;

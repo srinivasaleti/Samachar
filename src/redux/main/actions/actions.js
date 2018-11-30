@@ -1,5 +1,8 @@
 export const SELECTED_SUB_REDDIT = "SELECTED_SUB_REDDIT";
 export const RECIEVED_POSTS = "RECIEVED_POSTS";
+export const SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED =
+  "SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED";
+export const SUB_REDDIT_SELECTED = "SUB_REDDIT_SELECTED";
 
 export const selectedSubReddit = subReddit => {
   return {
@@ -17,6 +20,18 @@ export const recivedPosts = posts => {
 
 export const updateStoreWithPostsOf = subReddit => {
   return dispatch => updateStoreWithPosts(dispatch, subReddit);
+};
+
+export const showSubRedditPaneButtonClicked = () => {
+  return {
+    type: SHOW_SUB_REDDIT_PANE_BUTTON_CLICKED
+  };
+};
+
+export const subRedditSelected = () => {
+  return {
+    type: SUB_REDDIT_SELECTED
+  };
 };
 
 const updateStoreWithPosts = async (dispatch, subReddit) => {
